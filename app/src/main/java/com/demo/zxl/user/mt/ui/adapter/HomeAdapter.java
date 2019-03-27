@@ -146,7 +146,6 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 Promotion promotion = data.getHead().getPromotionList().get(i);
                 //TextSliderView 等同于ImageView+TextView 即能显示文本又能显示图片
                 TextSliderView textSliderView = new TextSliderView(activity);
-
                 textSliderView
                         .description(promotion.getInfo())//指定描述文本内容
                         .image(promotion.getPic())//指定需要加载图片
