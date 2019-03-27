@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 22
+        versionCode 2
+        versionName "1.0.1"
+    }
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.+'
+
+//    compile 'com.daimajia.androidanimations:library:1.0.3@aar'
+
+    //自定义控件所在的jar包  5.4k star
+    compile 'com.daimajia.slider:library:1.1.5@aar'
+    //picasso图片异步加载框架 类似于Glide
+    compile 'com.squareup.picasso:picasso:2.3.2'
+    //兼容低版本sdk动画的jar包
+    compile 'com.nineoldandroids:library:2.4.0'
+}
