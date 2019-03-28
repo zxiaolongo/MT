@@ -1,19 +1,25 @@
 package com.demo.zxl.user.mt.ui.activity;
 
-
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.demo.zxl.user.mt.R;
 import com.demo.zxl.user.mt.moudle.bean.Seller;
 import com.demo.zxl.user.mt.ui.adapter.MyFragmentPagerAdapter;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,7 +69,7 @@ public class BusinessActivity extends FragmentActivity {
         //viewpager设置上数据适配器
 
         MyFragmentPagerAdapter myFragmentPagerAdapter
-                = new MyFragmentPagerAdapter(getSupportFragmentManager());
+                = new MyFragmentPagerAdapter(getSupportFragmentManager(),seller);
         vp.setAdapter(myFragmentPagerAdapter);
         //让tabLayout和viewpager进行绑定
         tabs.setupWithViewPager(vp);

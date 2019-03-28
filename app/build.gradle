@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
+
+// 添加插件
+apply plugin: 'com.mob.sdk'
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -17,7 +20,13 @@ android {
         }
     }
 }
+// 在MobSDK的扩展中注册SMSSDK的相关信息
+MobSDK {
+    appKey "27ff233250580"
+    appSecret "e5244b961b29bb03d34faef4f1b81600"
 
+    SMSSDK {}
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -50,6 +59,9 @@ dependencies {
     //底部弹出窗体自定义控件  4.2k star
     compile 'com.flipboard:bottomsheet-commons:1.5.1'
     compile 'com.flipboard:bottomsheet-core:1.5.1'
+
+    //StickyListHeadersListView所在jar包
+    compile 'se.emilsjolander:stickylistheaders:2.7.0'
 
 
 }

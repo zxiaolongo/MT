@@ -1,9 +1,11 @@
 package com.demo.zxl.user.mt.ui.adapter;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.demo.zxl.user.mt.moudle.bean.Seller;
 import com.demo.zxl.user.mt.ui.fragment.GoodsFragment;
 import com.demo.zxl.user.mt.ui.fragment.SellerFragment;
 import com.demo.zxl.user.mt.ui.fragment.SuggestFragment;
@@ -14,9 +16,11 @@ import com.demo.zxl.user.mt.ui.fragment.SuggestFragment;
  */
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+    private Seller seller;
     private String[] str = new String[]{"商品","评价","商家"};
-    public MyFragmentPagerAdapter(FragmentManager fm) {
+    public MyFragmentPagerAdapter(FragmentManager fm, Seller seller) {
         super(fm);
+        this.seller = seller;
     }
 
     @Override
@@ -33,6 +37,14 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
                 fragment = new SellerFragment();
                 break;
         }
+        //activity如何给fragment传递数据
+
+        //创建一个邮包
+        Bundle bundle = new Bundle();
+        //向邮包中放置一个实现了序列化接口的对象
+        bundle.putSerializable("seller",seller);
+        //将对象设置给fragment
+        fragment.setArguments(bundle);
         return fragment;
     }
 
