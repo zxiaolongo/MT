@@ -1,10 +1,14 @@
 package com.demo.zxl.user.mt.presenter.net;
 
 
+
 import com.demo.zxl.user.mt.moudle.bean.ResponseInfo;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -27,4 +31,17 @@ public interface ResponseInfoApi {
     //其余模块请求方式,请求地址,请求参数各不相同,只需要在此处定义多个方法即可
     @GET("business")
     Call<ResponseInfo> getGoodsInfo(@Query("sellerId") long sellerId);
+
+    /*@FormUrlEncoded()
+    @POST("login")
+    Call<ResponseInfo> getLoginUserInfo(@Field("username") String username,
+                                    @Field("password") String password,
+                                    @Field("phone") String phone,
+                                    @Field("type") int type);*/
+
+    @GET("login")
+    Call<ResponseInfo> getLoginUserInfo(@Query("username") String username,
+                                        @Query("password") String password,
+                                        @Query("phone") String phone,
+                                        @Query("type") int type);
 }

@@ -63,5 +63,8 @@ dependencies {
     //StickyListHeadersListView所在jar包
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
 
+    //omrlite数据库jar包
+    compile 'com.j256.ormlite:ormlite-android:5.0'
+
 
 }

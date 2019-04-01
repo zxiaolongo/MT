@@ -11,7 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
 import com.demo.zxl.user.mt.R;
+import com.demo.zxl.user.mt.presenter.LoginPresenter;
 import com.demo.zxl.user.mt.util.SMSUtil;
 
 import butterknife.BindView;
@@ -100,7 +103,14 @@ public class LoginActivity extends Activity {
      * 用户可以发送注册请求
      */
     private void registerUser() {
+        String phone = etUserPhone.getText().toString().trim();
+        String psd = etUserPsd.getText().toString().trim();
+        String code = etUserCode.getText().toString().trim();
 
+        if(SMSUtil.isMobileNO(phone) && !TextUtils.isEmpty(psd) && !TextUtils.isEmpty(code)){
+            LoginPresenter loginPresenter = new LoginPresenter(this);
+            loginPresenter.getLoginUserInfo(phone,psd,phone,3);
+        }
     }
 
     @Override

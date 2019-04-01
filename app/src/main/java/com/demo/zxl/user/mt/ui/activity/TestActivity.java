@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+
 import com.demo.zxl.user.mt.R;
 
 import butterknife.BindView;
@@ -26,8 +27,6 @@ public class TestActivity extends Activity {
     Button btnClick;
     @BindView(R.id.btn_submit)
     Button btnSubmit;
-    @BindView(R.id.et_code)
-    EditText etCode;
 
     private EventHandler eventHandler = new EventHandler() {
         @Override
@@ -44,12 +43,12 @@ public class TestActivity extends Activity {
                     //发送验证码短信失败
                     Log.i("", "验证码短信发送失败==============");
                 }
-            } else if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+            }else if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
                 //如果事件类型是校验验证码
-                if (result == SMSSDK.RESULT_COMPLETE) {
+                if (result == SMSSDK.RESULT_COMPLETE){
                     //校验成功
                     Log.i("", "检验验证码短信成功==============");
-                } else {
+                }else{
                     //校验失败
                     Log.i("", "检验验证码短信失败==============");
                 }
@@ -88,10 +87,8 @@ public class TestActivity extends Activity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phone = etPhone.getText().toString().trim();
-                String code = etCode.getText().toString();
                 //验证码短信3分钟有效
-                SMSSDK.submitVerificationCode("86", phone, code);
+                SMSSDK.submitVerificationCode("86","18612699412","5320");
             }
         });
     }
