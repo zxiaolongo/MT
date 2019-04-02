@@ -1,1 +1,1 @@
-include ':app', ':slider_demo', ':sqlitedemo'
+include ':app', ':slider_demo', ':sqlitedemo', ':request'

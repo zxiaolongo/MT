@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.demo.zxl.user.mt.R;
 import com.demo.zxl.user.mt.moudle.bean.GoodsTypeInfo;
 import com.demo.zxl.user.mt.ui.fragment.GoodsFragment;
+import com.demo.zxl.user.mt.util.Constant;
 
 import java.util.List;
 
@@ -71,6 +72,34 @@ public class GoodsTypeAdapter extends RecyclerView.Adapter {
     }
     public List<GoodsTypeInfo> getData(){
         return data;
+    }
+
+    /**
+     * @param operation     操作符  用于区分增加还是减少
+     * @param typeId        修改修改数量的分类id
+     */
+    public void refreshGoodsTypeAdapterCount(int operation, int typeId) {
+        //通过typeId在商品分类集合中进行遍历,找到需要修改数量的分类对象
+        for (int i = 0; i < data.size(); i++) {
+            GoodsTypeInfo goodsTypeInfo = data.get(i);
+            if (typeId == goodsTypeInfo.getId()){
+                //找到需要修改数量的分类对象了,根据操作符修改分类数量
+                switch (operation){
+                    case Constant.ADD:
+                        int addCount = goodsTypeInfo.getCount()+1;
+                        goodsTypeInfo.setCount(addCount);
+                        break;
+                    case Constant.DELETE:
+                        if (goodsTypeInfo.getCount()>0){
+                            int deleteCount = goodsTypeInfo.getCount()-1;
+                            goodsTypeInfo.setCount(deleteCount);
+                        }
+                        break;
+                }
+            }
+        }
+        //将+或者-操作变更的商品数量,更新到列表页面中
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

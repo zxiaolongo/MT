@@ -5,11 +5,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+
 import com.demo.zxl.user.mt.moudle.bean.Seller;
 import com.demo.zxl.user.mt.ui.fragment.GoodsFragment;
 import com.demo.zxl.user.mt.ui.fragment.SellerFragment;
 import com.demo.zxl.user.mt.ui.fragment.SuggestFragment;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by HASEE.
@@ -18,6 +21,7 @@ import com.demo.zxl.user.mt.ui.fragment.SuggestFragment;
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     private Seller seller;
     private String[] str = new String[]{"商品","评价","商家"};
+    private List<Fragment> fragmentList = new ArrayList<>();
     public MyFragmentPagerAdapter(FragmentManager fm, Seller seller) {
         super(fm);
         this.seller = seller;
@@ -37,6 +41,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
                 fragment = new SellerFragment();
                 break;
         }
+        fragmentList.add(fragment);
         //activity如何给fragment传递数据
 
         //创建一个邮包
@@ -57,5 +62,13 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return str[position];
+    }
+
+    /**
+     * @return  通过Fragment数据适配器获取索引位置0上的GoodsFragment对象
+     */
+    public GoodsFragment getGoodsFragment(){
+        GoodsFragment goodsFragment = (GoodsFragment) fragmentList.get(0);
+        return goodsFragment;
     }
 }

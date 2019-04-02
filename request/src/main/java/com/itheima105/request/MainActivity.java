@@ -90,19 +90,16 @@ public class MainActivity extends AppCompatActivity {
             FileOutputStream fileOutputStream = null;
             fileOutputStream = new FileOutputStream(imgFile);
             bitmap.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
-
             Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), R.mipmap.b);
             File imgFile1 = new File(getCacheDir(), "imgFile");
             FileOutputStream fileOutputStream1 = null;
             fileOutputStream1 = new FileOutputStream(imgFile1);
             bitmap1.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream1);
-
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://httpbin.org/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             ResponseInfoApi responseInfoApi = retrofit.create(ResponseInfoApi.class);
-
             // 创建 RequestBody，用于封装构建RequestBody
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"),imgFile);
@@ -112,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
             HashMap<String, RequestBody> map = new HashMap<>();
             map.put("actimg",requestFile);
             map.put("listImg",requestFile1);
-
             Call<ResponseBody> call = responseInfoApi.uploadFiles(map);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
@@ -145,8 +141,6 @@ public class MainActivity extends AppCompatActivity {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             ResponseInfoApi responseInfoApi = retrofit.create(ResponseInfoApi.class);
-
-
             // 创建 RequestBody，用于封装构建RequestBody
             RequestBody requestFile =
                     RequestBody.create(MediaType.parse("multipart/form-data"),imgFile);
